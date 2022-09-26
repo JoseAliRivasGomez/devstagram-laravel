@@ -18,7 +18,7 @@ class PostController extends Controller
         //dd(auth()->user());
         //dd($user->username);
 
-        $posts = Post::where('user_id', $user->id)->paginate(20); //simplePaginate, get
+        $posts = Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(20); //simplePaginate, get
 
         return view('dashboard', [
             'user' => $user,
