@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,10 +20,15 @@ class HomeController extends Controller
 
         $posts = Post::whereIn('user_id', $ids)->latest()->paginate(20);
 
+        $users = User::query()->paginate(20);
+
+        //dd($users);
+
         //dd($posts);
 
         return view('home', [
-            'posts' => $posts
+            'posts' => $posts,
+            'users' => $users,
         ]);
 
     }
